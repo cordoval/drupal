@@ -12,7 +12,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 
 /**
- * Adds services to the breadcrumb_builder service.
+ * Adds services tagged with breadcrumb_builder to the breadcrumb manager service.
  */
 class RegisterBreadcrumbBuilderPass implements CompilerPassInterface {
 
