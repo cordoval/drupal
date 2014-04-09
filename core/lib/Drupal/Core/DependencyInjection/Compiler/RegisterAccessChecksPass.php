@@ -16,9 +16,7 @@ use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 class RegisterAccessChecksPass implements CompilerPassInterface {
 
   /**
-   * Implements CompilerPassInterface::process().
-   *
-   * Adds services tagged 'access_check' to the access_manager service.
+   * {@inheritdoc}
    */
   public function process(ContainerBuilder $container) {
     if (!$container->hasDefinition('access_manager')) {
