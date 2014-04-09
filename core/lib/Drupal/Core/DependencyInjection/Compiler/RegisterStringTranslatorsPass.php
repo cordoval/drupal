@@ -23,10 +23,10 @@ class RegisterStringTranslatorsPass implements CompilerPassInterface {
     if (!$container->hasDefinition('string_translation')) {
       return;
     }
-    $access_manager = $container->getDefinition('string_translation');
+    $definition = $container->getDefinition('string_translation');
     foreach ($container->findTaggedServiceIds('string_translator') as $id => $attributes) {
       $priority = isset($attributes[0]['priority']) ? $attributes[0]['priority'] : 0;
-      $access_manager->addMethodCall('addTranslator', array(new Reference($id), $priority));
+      $definition->addMethodCall('addTranslator', array(new Reference($id), $priority));
     }
   }
 }

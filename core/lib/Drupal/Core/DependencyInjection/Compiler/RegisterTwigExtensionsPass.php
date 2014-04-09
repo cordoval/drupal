@@ -12,25 +12,22 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 
 /**
- * Register additional Twig extensions to the Twig service container.
+ * Register additional Twig extensions with the Twig service container.
  */
 class RegisterTwigExtensionsPass implements CompilerPassInterface {
 
   /**
    * Adds services tagged 'twig.extension' to the Twig service container.
    *
-   * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container
-   *   The container to process.
+   * {@inheritdoc}
    */
   public function process(ContainerBuilder $container) {
     if (!$container->hasDefinition('twig')) {
       return;
     }
-
     $definition = $container->getDefinition('twig');
-
     foreach ($container->findTaggedServiceIds('twig.extension') as $id => $attributes) {
-      // We must assume that the class value has been correcly filled,
+      // We must assume that the class value has been correctly filled,
       // even if the service is created by a factory.
       $class = $container->getDefinition($id)->getClass();
 

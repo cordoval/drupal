@@ -12,15 +12,15 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 
 /**
- * Adds services to the 'path_processor_manager service.
+ * Adds services to the 'path_processor_manager' service.
  */
 class RegisterPathProcessorsPass implements CompilerPassInterface {
 
   /**
-   * Adds services tagged 'path_processor_inbound' to the path processor manager.
+   * Adds services tagged 'path_processor_inbound' and 'path_processor_outbound'
+   * to the path processor manager.
    *
-   * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container
-   *  The container to process.
+   * {@inheritdoc}
    */
   public function process(ContainerBuilder $container) {
     if (!$container->hasDefinition('path_processor_manager')) {
