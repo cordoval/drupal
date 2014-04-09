@@ -19,14 +19,12 @@ class RegisterRouteEnhancersPass implements CompilerPassInterface {
   /**
    * Adds services tagged with "route_enhancer" to the router.
    *
-   * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container
-   *   The container to process.
+   * {@inheritdoc}
    */
   public function process(ContainerBuilder $container) {
     if (!$container->hasDefinition('router.dynamic')) {
       return;
     }
-
     $router = $container->getDefinition('router.dynamic');
     foreach ($container->findTaggedServiceIds('route_enhancer') as $id => $attributes) {
       $priority = isset($attributes[0]['priority']) ? $attributes[0]['priority'] : 0;

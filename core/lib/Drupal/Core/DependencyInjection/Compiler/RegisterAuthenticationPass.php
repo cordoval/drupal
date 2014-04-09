@@ -24,17 +24,17 @@ class RegisterAuthenticationPass implements CompilerPassInterface {
    *
    * @see \Drupal\Core\Authentication\AuthenticationManager
    * @see \Drupal\Core\Authentication\AuthenticationProviderInterface
+   *
+   * {@inheritdoc}
    */
   public function process(ContainerBuilder $container) {
     if (!$container->hasDefinition('authentication')) {
       return;
     }
-    // Get the authentication manager.
-    $matcher = $container->getDefinition('authentication');
-    // Iterate all autentication providers and add them to the manager.
+    $manager = $container->getDefinition('authentication');
     foreach ($container->findTaggedServiceIds('authentication_provider') as $id => $attributes) {
       $priority = isset($attributes[0]['priority']) ? $attributes[0]['priority'] : 0;
-      $matcher->addMethodCall('addProvider', array(
+      $manager->addMethodCall('addProvider', array(
         $id,
         new Reference($id),
         $priority,

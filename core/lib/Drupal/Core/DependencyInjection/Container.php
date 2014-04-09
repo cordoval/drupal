@@ -34,5 +34,4 @@ class Container extends SymfonyContainer {
     trigger_error('The container was serialized.', E_USER_ERROR);
     return array_keys(get_object_vars($this));
   }
-
 }

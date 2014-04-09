@@ -12,15 +12,12 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 
 /**
- * Adds services tagged 'router.matcher' to the matcher service.
+ * Adds services tagged 'route_filter' to the matcher service.
  */
 class RegisterRouteFiltersPass implements CompilerPassInterface {
 
   /**
-   * Adds services tagged 'router.matcher' to the matcher service.
-   *
-   * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container
-   *   The container to process.
+   * {@inheritdoc}
    */
   public function process(ContainerBuilder $container) {
     if (!$container->hasDefinition('router.matcher')) {

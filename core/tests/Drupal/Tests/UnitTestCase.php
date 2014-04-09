@@ -10,7 +10,6 @@ namespace Drupal\Tests;
 use Drupal\Component\Utility\Random;
 use Drupal\Component\Utility\String;
 use Drupal\Core\Cache\CacheBackendInterface;
-use Drupal\Core\DependencyInjection\ContainerBuilder;
 
 /**
  * Provides a base class and helpers for Drupal unit tests.
