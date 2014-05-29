@@ -111,6 +111,10 @@ class YamlFileLoader {
       $definition->setSynchronized($service['synchronized']);
     }
 
+    if (isset($service['lazy'])) {
+      $definition->setLazy($service['lazy']);
+    }
+
     if (isset($service['public'])) {
       $definition->setPublic($service['public']);
     }
@@ -172,9 +176,9 @@ class YamlFileLoader {
         $name = $tag['name'];
         unset($tag['name']);
 
-        foreach ($tag as $value) {
-          if (!is_scalar($value)) {
-            throw new \InvalidArgumentException(sprintf('A "tags" attribute must be of a scalar-type for service "%s", tag "%s" in %s.', $id, $name, $filename));
+        foreach ($tag as $attribute => $value) {
+          if (!is_scalar($value) && null !== $value) {
+            throw new \InvalidArgumentException(sprintf('A "tags" attribute must be of a scalar-type for service "%s", tag "%s", attribute "%s" in %s.', $id, $name, $attribute, $filename));
           }
         }
 
