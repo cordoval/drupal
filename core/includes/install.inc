@@ -642,8 +642,7 @@ function drupal_install_system($install_state) {
   $kernel->boot();
 
   if ($request) {
-    $kernel->getContainer()->enterScope('request');
-    $kernel->getContainer()->set('request', $request, 'request');
+    $kernel->getContainer()->set('request', $request);
     $kernel->getContainer()->get('request_stack')->push($request);
   }
 

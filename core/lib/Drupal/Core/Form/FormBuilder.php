@@ -13,7 +13,6 @@ use Drupal\Component\Utility\UrlHelper;
 use Drupal\Core\Access\CsrfTokenGenerator;
 use Drupal\Core\DependencyInjection\ClassResolverInterface;
 use Drupal\Core\Extension\ModuleHandlerInterface;
-use Drupal\Core\HttpKernel;
 use Drupal\Core\KeyValueStore\KeyValueExpirableFactoryInterface;
 use Drupal\Core\Render\Element;
 use Drupal\Core\Site\Settings;
@@ -67,7 +66,7 @@ class FormBuilder implements FormBuilderInterface, FormValidatorInterface, FormS
   /**
    * The HTTP kernel to handle forms returning response objects.
    *
-   * @var \Drupal\Core\HttpKernel
+   * @var \Symfony\Component\HttpKernel\HttpKernelInterface
    */
   protected $httpKernel;
 
@@ -114,10 +113,10 @@ class FormBuilder implements FormBuilderInterface, FormValidatorInterface, FormS
    *   The class resolver.
    * @param \Drupal\Core\Access\CsrfTokenGenerator $csrf_token
    *   The CSRF token generator.
-   * @param \Drupal\Core\HttpKernel $http_kernel
+   * @param \Symfony\Component\HttpKernel\HttpKernelInterface $http_kernel
    *   The HTTP kernel.
    */
-  public function __construct(FormValidatorInterface $form_validator, FormSubmitterInterface $form_submitter, ModuleHandlerInterface $module_handler, KeyValueExpirableFactoryInterface $key_value_expirable_factory, EventDispatcherInterface $event_dispatcher, RequestStack $request_stack, ClassResolverInterface $class_resolver, CsrfTokenGenerator $csrf_token = NULL, HttpKernel $http_kernel = NULL) {
+  public function __construct(FormValidatorInterface $form_validator, FormSubmitterInterface $form_submitter, ModuleHandlerInterface $module_handler, KeyValueExpirableFactoryInterface $key_value_expirable_factory, EventDispatcherInterface $event_dispatcher, RequestStack $request_stack, ClassResolverInterface $class_resolver, CsrfTokenGenerator $csrf_token = NULL, HttpKernelInterface $http_kernel = NULL) {
     $this->formValidator = $form_validator;
     $this->formSubmitter = $form_submitter;
     $this->moduleHandler = $module_handler;

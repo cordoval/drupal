@@ -279,9 +279,8 @@ services:
     class: Drupal\Core\Controller\TitleResolver
     arguments: ['@controller_resolver', '@string_translation']
   http_kernel:
-    class: Drupal\Core\HttpKernel
+    class: Symfony\Component\HttpKernel\HttpKernel
     arguments: ['@event_dispatcher', '@controller_resolver', '@request_stack']
-    parent: container.trait
   language_manager:
     class: Drupal\Core\Language\LanguageManager
     arguments: ['@language.default']
@@ -596,13 +595,11 @@ services:
     tags:
       - { name: event_subscriber }
     arguments: ['@language_manager', '@config.factory']
-    scope: request
   redirect_response_subscriber:
     class: Drupal\Core\EventSubscriber\RedirectResponseSubscriber
     arguments: ['@url_generator']
     tags:
       - { name: event_subscriber }
-    scope: request
   request_close_subscriber:
     class: Drupal\Core\EventSubscriber\RequestCloseSubscriber
     tags:

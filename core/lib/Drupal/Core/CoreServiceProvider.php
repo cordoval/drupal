@@ -42,10 +42,6 @@ class CoreServiceProvider implements ServiceProviderInterface  {
    * {@inheritdoc}
    */
   public function register(ContainerBuilder $container) {
-    // The 'request' scope and service enable services to depend on the Request
-    // object and get reconstructed when the request object changes (e.g.,
-    // during a subrequest).
-    $container->addScope(new Scope('request'));
     $this->registerTwig($container);
     $this->registerUuid($container);
     $this->registerTest($container);

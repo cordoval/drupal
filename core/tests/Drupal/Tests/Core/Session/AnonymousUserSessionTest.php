@@ -44,9 +44,7 @@ class AnonymousUserSessionTest extends UnitTestCase {
       ->method('getClientIp')
       ->will($this->returnValue('test'));
     $container = new ContainerBuilder();
-    $container->addScope(new Scope('request'));
-    $container->enterScope('request');
-    $container->set('request', $request, 'request');
+    $container->set('request', $request);
     \Drupal::setContainer($container);
 
     $anonymous_user = new AnonymousUserSession();

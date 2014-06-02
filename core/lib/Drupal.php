@@ -158,7 +158,7 @@ class Drupal {
    *   TRUE if there is a currently active request object, FALSE otherwise.
    */
   public static function hasRequest() {
-    return static::$container && static::$container->has('request') && static::$container->initialized('request') && static::$container->isScopeActive('request');
+    return static::$container && static::$container->has('request') && static::$container->initialized('request');
   }
 
   /**

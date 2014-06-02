@@ -389,8 +389,7 @@ function simpletest_script_bootstrap() {
 
   $request = Request::createFromGlobals();
   $container = $kernel->getContainer();
-  $container->enterScope('request');
-  $container->set('request', $request, 'request');
+  $container->set('request', $request);
   $container->get('request_stack')->push($request);
 
   $module_handler = $container->get('module_handler');

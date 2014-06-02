@@ -362,8 +362,7 @@ function install_begin_request(&$install_state) {
   // Enter the request scope and add the Request.
   // @todo Remove this after converting all installer screens into controllers.
   $container = $kernel->getContainer();
-  $container->enterScope('request');
-  $container->set('request', $request, 'request');
+  $container->set('request', $request);
   $container->get('request_stack')->push($request);
 
   // Register the file translation service.

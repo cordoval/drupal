@@ -290,9 +290,7 @@ class DrupalKernel implements DrupalKernelInterface, TerminableInterface {
       return;
     }
 
-    if ($this->getHttpKernel() instanceof TerminableInterface) {
-      $this->getHttpKernel()->terminate($request, $response);
-    }
+    $this->getHttpKernel()->terminate($request, $response);
   }
 
   /**
@@ -401,11 +399,7 @@ class DrupalKernel implements DrupalKernelInterface, TerminableInterface {
     $persist = $this->getServicesToPersist();
     // The request service requires custom persisting logic, since it is also
     // potentially scoped.
-    $request_scope = FALSE;
     if (isset($this->container)) {
-      if ($this->container->isScopeActive('request')) {
-        $request_scope = TRUE;
-      }
       if ($this->container->initialized('request')) {
         $request = $this->container->get('request');
       }
@@ -460,9 +454,6 @@ class DrupalKernel implements DrupalKernelInterface, TerminableInterface {
     // Set the class loader which was registered as a synthetic service.
     $this->container->set('class_loader', $this->classLoader);
     // If we have a request set it back to the new container.
-    if ($request_scope) {
-      $this->container->enterScope('request');
-    }
     if (isset($request)) {
       $this->container->set('request', $request);
     }

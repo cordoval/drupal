@@ -109,6 +109,9 @@ class SessionManager extends NativeSessionStorage implements SessionManagerInter
    * {@inheritdoc}
    */
   public function initialize() {
+    if (!$this->isEnabled() || $this->isCli()) {
+      return $this;
+    }
     global $user;
 
     // Register the default session handler.
